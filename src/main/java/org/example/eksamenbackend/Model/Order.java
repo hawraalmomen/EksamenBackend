@@ -1,13 +1,16 @@
 package org.example.eksamenbackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "orders")
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -20,14 +23,16 @@ public class Order {
 
     private LocalDate receivedDate;
 
-    public Order(){}
+    @JsonIgnore
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderLine> orderLines = new ArrayList<>();
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderLine> orderlines;
 
     @ManyToOne
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
+
+    public Order(){}
 
     public int getId() {
         return id;
@@ -76,4 +81,17 @@ public class Order {
     public void setSupplier(Supplier supplier) {
         this.supplier=supplier;
     }
+
+    public List<OrderLine> getOrderLines() {
+        return orderLines;
+    }
+
+    // --- hjælpemetode ---
+
+    public void addOrderLine(OrderLine line) {
+        orderLines.add(line);
+        line.setOrder(this);
+    }
+
+
 }

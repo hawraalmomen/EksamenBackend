@@ -9,7 +9,7 @@ public class Component {
     private int internalNumber;
     private String externalNumber;
     private boolean discontinued;
-    private boolean ordereable;
+    private boolean orderable;
 
     @ManyToOne
     @JoinColumn(name = "supplier_id")
@@ -41,12 +41,12 @@ public class Component {
         this.discontinued = discontinued;
     }
 
-    public boolean isOrdereable() {
-        return ordereable;
+    public boolean isOrderable() {
+        return orderable;
     }
 
-    public void setOrdereable(boolean ordereable) {
-        this.ordereable = ordereable;
+    public void setOrderable(boolean orderable) {
+        this.orderable = orderable;
     }
 
     public Supplier getSupplier(){

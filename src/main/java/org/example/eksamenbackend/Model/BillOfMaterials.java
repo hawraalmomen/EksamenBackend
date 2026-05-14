@@ -1,5 +1,6 @@
 package org.example.eksamenbackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -11,8 +12,10 @@ public class BillOfMaterials {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(unique = true)
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "bom")
     private List<BomLine> lines;
 
@@ -32,5 +35,13 @@ public class BillOfMaterials {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<BomLine> getLines() {
+        return lines;
+    }
+
+    public void setLines(List<BomLine> lines) {
+        this.lines = lines;
     }
 }

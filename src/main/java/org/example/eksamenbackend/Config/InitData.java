@@ -202,13 +202,13 @@ public class InitData implements CommandLineRunner {
         bomLineRepository.save(b4);
 
         //Ordre kan bestilles
-        comp1.setOrdereable(true);
-        comp2.setOrdereable(true);
-        comp3.setOrdereable(true);
+        comp1.setOrderable(true);
+        comp2.setOrderable(true);
+        comp3.setOrderable(true);
 
         //Ordre kan ikke bestilles
-        comp4.setOrdereable(false);
-        comp5.setOrdereable(false);
+        comp4.setOrderable(false);
+        comp5.setOrderable(false);
 
     }
 }
